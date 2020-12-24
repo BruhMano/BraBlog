@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>BruhBlog</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href='{% static "formstyle.css" %}'>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/fe75cde472.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <b class="log"><span class="red">Bruh</span>Blog</b>
+        <div class="formdiv">
+            <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.username.label}}
+                {{form.username}} <br><br>
+                {{form.first_name.label}}
+                {{form.first_name}}<br><br>
+                {{form.last_name.label}}
+                {{form.last_name}}<br><br>
+                {{form.desc.label}}
+                {{form.desc}}<br><br>
+                {{form.email.label}}
+                {{form.email}}<br><br>
+                {{form.image}}<br><br>
+                {{form.password1.label}}
+                {{form.password1}}<br><br>
+                {{form.password2.label}}
+                {{form.password2}}<br><br>
+                
+                
+                <input type="submit" value="Зарегистрироваться">
+            </form>
+        </div>
+    </body>
+</html>

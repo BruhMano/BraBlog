@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>BruhBlog</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href='{% static "style.css" %}'>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/fe75cde472.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="BraLogo">
+            <a href="{% url 'index' %}"><b class="log"><span class="red">Bruh</span>Blog</b></a>
+        {% if user.is_authenticated %}  
+            <span class="login"><span class="logi"><a href="http://127.0.0.1:8000/profile/{{user.username}}">{{user.username}}</a></span>
+            <a href="http://127.0.0.1:8000/profile/{{user.username}}"><img src="{{user.image.url}}" class="nophoto" ></a></span>
+        {% else %}
+            <span class="login"><span class="logi"><a href="http://127.0.0.1:8000/auth/login">LogIn</a>/<a href="http://127.0.0.1:8000/auth/signup">SignUp</a>
+            </span><img src="{% static 'noPhoto.png' %}" class="nophoto"></span>
+        {% endif %}
+        </div>
+        {% if user.is_authenticated %}
+        <nav  style="display: inline-block;
+                     margin-top: 20px;
+                     width: 120pt;
+                     height: 200pt;
+                     background-color: #dedede;
+                     border-radius: 5%;">
+        {% else %}
+        <nav class="nav">
+        {% endif %}
+            <a href="http://127.0.0.1:8000/" class="naviga"><i class="fas fa-newspaper"></i> Newsfeed</a><br>
+            {% if user.is_authenticated %}
+            <a href="http://127.0.0.1:8000/profile/{{user.username}}" class="naviga"><i class="fas fa-user-alt"></i> My profile</a><br>
+            {% else %}
+            <a href="#" class="naviga"><i class="fas fa-user-alt"></i> My profile</a><br>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <a href="http://127.0.0.1:8000/fav" class="naviga"><i class="fas fa-heart"></i> Favorites</a><br>
+            {% else %}
+            <a href="#" class="naviga"><i class="fas fa-heart"></i> Favorites</a><br>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <a href="{% url 'newpost' %}" class="naviga"><i class="fas fa-plus"></i> Create</a><br>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="naviga"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            {% else %}
+            <a href="{% url 'login' %}" class="naviga"><i class="fas fa-sign-out-alt"></i> Login</a>
+            {% endif %}
+            
+        </nav>
+        {% block content %}
+            <!-- Содержимое страницы -->
+        {% endblock %}
+    </body>
+</html>

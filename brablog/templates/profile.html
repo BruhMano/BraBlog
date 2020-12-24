@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+    {% block content %}
+    {% load staticfiles %}
+        <div class="profile">
+        {% if user.image %}    
+            <img src= "{{user.image.url}}" class="pphoto">
+        {% else %}
+            <img src= "{% static 'noPhoto.png' %}" class="pphoto">
+        {% endif %}
+            <div class="profilebox">
+                <span class="name">{{user.username}}</span><br>
+                <i>
+                    Status: {{user.desc}} <br>
+                    Name: {{user.first_name}} <br>
+                    Surname: {{user.last_name}} <br>
+                    Mail: {{user.email}}
+                </i>
+            </div>
+        </div>
+        <div class="divinity" style="margin-right: 11%;">
+            {% for post in page %}
+                {% if user == post.author %}
+                   {% include "post.html" with post=post username=post.author %}
+               {% endif %}
+            {% endfor %}
+        </div>
+        {% if page.has_other_pages %}
+            {% include "paginator.html" with items=page paginator=paginator %}
+        {% endif %}
+    {% endblock %}

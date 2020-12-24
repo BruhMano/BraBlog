@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<div class="article">
+{% if post.image %}    
+    <img src="{{ post.image.url }}" alt="" class="art">
+{% else %}
+    <img src="{% static '1.jpg' %}" alt="" class="art">
+{% endif %}    
+    <div class="bloginfo">
+        <div class="artext">
+            <a href="" name = '{{post.title}}'></a>
+            <a href="http://127.0.0.1:8000/post/{{post.title}}" class="title" title="link">{{post.title}}</a><br>
+            <span class="desc">
+                {{post.text}}
+            </span>
+        </div>
+        <hr width="100%" size="2px">
+        <span class="bloginf">
+        {% if username == post.author %}
+            <a href="#" ><i class="fas fa-user-alt"></i> {{post.author}}</a><br>
+        {% else %}
+            <a href="profile/{{post.author}}" ><i class="fas fa-user-alt"></i> {{post.author}}</a><br>
+        {% endif %}
+        {% if user.is_authenticated %}
+          {% if post.is_liked_by_current_user %}
+              <div class="rate" style="color: #ED002F;">{{post.likes}} <a href="like/add/{{post}}/{{user.username}}/#{{post.title}}"><i class="fas fa-heart" style="font-size: 16pt;color: #ED002F;"></i></a></div>
+          {% else %}
+              <div class="rate">{{post.likes}} <a href="like/add/{{post}}/{{user.username}}/#{{post.title}}"><i class="fas fa-heart" style="font-size: 16pt;"></i></a></div>
+          {% endif %}
+        {% endif %}
+            <i class="date">date: {{post.pub_date}}</i>  
+        </span>
+    </div>
+</div>

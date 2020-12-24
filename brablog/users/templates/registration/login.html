@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>BruhBlog</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href='{% static "formstyle.css" %}'>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/fe75cde472.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+      <div class="formdiv">
+        <div class="col-md-8 p-5">
+          <div class="card">
+            <div class="card-header">Войти на сайт</div>
+            <div class="card-body">
+              {% if form.errors %}
+              <div class="alert alert-danger" role="alert">
+                Имя пользователя и пароль не совпадают. Введите правильные данные.
+              </div>
+              {% endif %}
+      
+              <div class="alert alert-info" role="alert">
+                Пожалуйста, авторизуйтесь.
+              </div> <br>
+      
+              <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
+                <div class="form-group row">
+                    <label for="{{ form.username.id_for_label }}" class="col-md-4 col-form-label text-md-right">Имя пользователя</label>
+                    <div class="col-md-6">
+                        {{ form.username }}
+                    </div>
+                </div> <br>
+      
+                <div class="form-group row">
+                    <label for="{{ form.password.id_for_label }}" class="col-md-4 col-form-label text-md-right">Пароль</label>
+                    <div class="col-md-6">
+                        {{ form.password }}
+                    </div>
+                </div> <br>
+      
+                <div class="col-md-6 offset-md-4">              
+                    <input type="submit" class="btn btn-primary">
+                    
+                </input>
+                    </a>
+                </div>
+              </form>
+            </div> <!-- card body -->
+          </div> <!-- card -->
+        </div> <!-- col -->
+      </div> <!-- row -->      
+    </body>
+</html>

@@ -1,0 +1,39 @@
+body{
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 0.75%;
+    font-family: 'Ubuntu', sans-serif;
+    background-color:#f9f9fd;
+}
+.formdiv{
+    text-align: center;
+}
+input,input:active,input:link,input:visited,input:hover{
+    font-size: 20pt;
+    border-radius: 20px;
+    border: none;
+    background-color: #dadada;
+    outline: none;
+    text-align: center;
+}
+input[name='image']{
+    background-color: #f9f9fd;
+    border-radius: 0;
+}
+input[name='password1']{
+    margin-left: 5%;
+}
+textarea,textarea:active,textarea:link,textarea:visited,textarea:hover{
+    font-size: 12pt;
+    border-radius: 20px;
+    border: none;
+    background-color: #dadada;
+    outline: none;
+    text-align: center;
+}
+.red{
+    color: #ED002F;
+}
+.log{
+    font-size: 24pt;
+}

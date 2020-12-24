@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+    {% block content %}
+    {% load staticfiles %}
+        <h1>{{mess}}</h1>
+        <input name="name" value="{{request.GET.name}}">
+        <button type="submit">s</button>
+    {% endblock %}

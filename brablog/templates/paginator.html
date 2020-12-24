@@ -1,0 +1,19 @@
+<div class="paginator">       
+    {% if items.has_previous %}
+        <span class="leftpudge"><a href="?page={{ items.previous_page_number }}" ><</a></span>
+    {% else %}
+        <span class="leftpudge"><a href="#page" ><</a></span>
+    {% endif %}
+    {% if items.has_previous %}
+        <a href="?page={{ items.previous_page_number }}" class="pudge">{{ items.previous_page_number }}</a>
+    {% endif %}
+    <a href="#" class="pudge" style="color: white;background-color: #ED002F;">{{items.number}}</a>
+    {% if items.has_next %}
+        <a href="?page={{ items.next_page_number }}" class="pudge">{{ items.next_page_number }}</a>
+    {% endif %}
+    {% if items.has_next %}
+        <span class="rightpudge"><a href="?page={{ items.next_page_number }}" >></a></span>
+    {% else %}
+        <span class="rightpudge"><a href="#page" name = "page">></a></span>
+    {% endif %}
+</div>        

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>BruhBlog</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href='{% static "formstyle.css" %}'>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/fe75cde472.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <b class="log"><span class="red">Bruh</span>Blog</b>
+        <div class="formdiv">
+            <form method="post" action="{% url 'newpost' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.title.label}}
+                {{form.title}} <br><br>
+                {{form.text.label}}
+                {{form.text}}<br><br>
+                {{form.image}}<br><br>
+
+                <input type="submit" value="Создать">
+            </form>
+        </div>
+    </body>
+</html>

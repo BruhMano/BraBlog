@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <title>BruhBlog</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href='{% static "style.css" %}'>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/fe75cde472.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="BraLogo">
+            <a href="{% url 'index' %}"><b class="log"><span class="red">Bruh</span>Blog</b></a>
+        {% if user.is_authenticated %}  
+            <span class="login"><span class="logi"><a href="http://127.0.0.1:8000/profile/{{user.username}}">{{user.username}}</a></span>
+            <a href="http://127.0.0.1:8000/profile/{{user.username}}"><img src="{{user.image.url}}" class="nophoto" ></a></span>
+        {% else %}
+            <span class="login"><span class="logi"><a href="http://127.0.0.1:8000/auth/login">LogIn</a>/<a href="http://127.0.0.1:8000/auth/signup">SignUp</a>
+            </span><img src="{% static 'noPhoto.png' %}" class="nophoto"></span>
+        {% endif %}
+        </div>
+        <div class="titlepsot">{{post.title}}</div>
+        <hr width="100%" size="3px" color="grey">
+        {% if post.image %}    
+        <img src="{{ post.image.url }}" alt="" style="float: left;width: 40%; padding-right: 2%;">
+        {% else %}
+        <img src="{% static '1.jpg' %}" alt="" style="float: left;width: 40%; padding-right: 2%;">
+        {% endif %}
+        <div class="text">{{post.text}}</div>
+        <hr width="100%" size="3px" color="grey">
+        <div style="font-size: 24pt;margin-top: 2%;margin-bottom: 2%;"><a href="http://127.0.0.1:8000/profile/{{post.author}}" style="font-size: 24pt;color: gray;"><i class="fas fa-user-alt"></i> {{post.author}}</a>
+        {% if user.is_authenticated %}
+            {% if post.is_liked_by_current_user %}
+            <div class="rate" style="color: #ED002F;">{{post.likes}} <a href="http://127.0.0.1:8000/like/add/{{post}}/{{user.username}}/" style="font-size: 24pt;color: #ED002F;"><i class="fas fa-heart" ></i></a></div>
+            {% else %}
+            <div class="rate">{{post.likes}} <a href="http://127.0.0.1:8000/like/add/{{post}}/{{user.username}}/" style="font-size: 24pt;color: gray;"><i class="fas fa-heart"></i></a></div>
+            {% endif %}
+        {% endif %}
+        <br> <i style="font-size: 16pt;color: gray;">{{post.pub_date}}</i>
+        </div>
+    </body>
+</html>
